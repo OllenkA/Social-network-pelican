@@ -4,7 +4,9 @@ import Posts from './Posts/Posts';
 import PropTypes from 'prop-types';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
+
 const Profile = (props) => {
+
     return <main className={s.content}>
         <ProfileInfo profile={props.profile}/>
         <Posts/>

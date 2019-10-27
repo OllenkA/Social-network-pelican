@@ -1,22 +1,25 @@
 import React from 'react';
 import s from './Dialogs.module.css';
 import PropTypes from 'prop-types';
+import {Redirect} from "react-router-dom";
 
 
 const Dialogs = (props) => {
   
   let addMyMessage = () => {
     props.addMyMessage();
-  }
+  };
 
   let changeMyMessage = (e) => {
     let text = e.target.value;
     props.changeMyMessage(text);
-  }
+  };
   
   let deleteMyMessage = () => {
     props.deleteMyMessage('');
-  }
+  };
+
+  if(!props.isAuth) return <Redirect to={'/login'}/>;
 
   let messages = props.messages.map((message, i) => {
     return (
@@ -26,7 +29,7 @@ const Dialogs = (props) => {
         </span>
       </div>
     )
-  })
+  });
 
   return <div className={s.dialogs}>
     {messages}
@@ -34,14 +37,14 @@ const Dialogs = (props) => {
       <textarea className={s.text}
         onChange={changeMyMessage}
         placeholder='Write message...'
-        value={props.myMessage}></textarea>
+        value={props.myMessage}/>
       <div>
         <button className={s.but} onClick={addMyMessage}>Send</button>
         <button className={s.but} onClick={deleteMyMessage}>Clear</button>
       </div>
     </div>
   </div>
-}
+};
 
 Dialogs.propTypes = {
   state: PropTypes.object,
