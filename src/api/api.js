@@ -16,12 +16,6 @@ export const usersApi = {
                 return response.data;
             });
     },
-    getAuth(){
-        return instance.get(`auth/me`)
-            .then(response => {
-                return response.data;
-            });
-    },
     getUserPage(userId){
         return instance.get(`profile/` + userId)
             .then(response => {
@@ -40,4 +34,14 @@ export const usersApi = {
                 return response.data;
             });
     }
+};
+
+export const authApi = {
+    getAuth(){
+        return instance.get(`auth/me`)
+            .then(response => {
+                return response.data;
+            });
+    },
+
 };

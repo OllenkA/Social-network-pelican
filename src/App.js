@@ -12,36 +12,38 @@ import MyFriendsContainer from './components/MyFriends/MyFriendsContainer';
 import FindUsersContainer from './components/FindUsers/FindUsersContainer';
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import Login from "./components/Login/Login";
 
 
 const App = (props) => {
-  
-  return (
-    <div className='app-wrapper'>
-     <HeaderContainer />
-     <NavContainer/>
-     <div className= 'wrap'>
-     <Route path='/profile/:userId?' render={ () => <ProfileContainer />}/>
-     <Route path='/dialogPages' render={ () => <DialogPages />}/>
-     <Route path='/news' render={ () => <News />}/>
-     <Route path='/music' render={ () => <Music />}/>
-     <Route path='/myPhotos' render={ () => <MyPhotosContainer />}/>
-     <Route path='/findUsers' render={ () => <FindUsersContainer />}/>
-     <Route path='/settings' render={ () => <Settings/>}/>
-     <Route exact path='/myFriends' render={ () => <MyFriendsContainer/>}/>
-     </div>
-    </div>
-  )
-}
+
+    return (
+        <div className='app-wrapper'>
+            <HeaderContainer/>
+            <NavContainer/>
+            <div className='wrap'>
+                <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
+                <Route path='/login' render={() => <Login/>}/>
+                <Route path='/dialogPages' render={() => <DialogPages/>}/>
+                <Route path='/news' render={() => <News/>}/>
+                <Route path='/music' render={() => <Music/>}/>
+                <Route path='/myPhotos' render={() => <MyPhotosContainer/>}/>
+                <Route path='/findUsers' render={() => <FindUsersContainer/>}/>
+                <Route path='/settings' render={() => <Settings/>}/>
+                <Route exact path='/myFriends' render={() => <MyFriendsContainer/>}/>
+            </div>
+        </div>
+    )
+};
 
 App.propTypes = {
-  state: PropTypes.object,
-  updatePostText: PropTypes.func,
-  addPost: PropTypes.func,
-  updateMyMessage: PropTypes.func,
-  addMyMessage: PropTypes.func,
-  addPhoto: PropTypes.func,
-  updatePhoto: PropTypes.func,
+    state: PropTypes.object,
+    updatePostText: PropTypes.func,
+    addPost: PropTypes.func,
+    updateMyMessage: PropTypes.func,
+    addMyMessage: PropTypes.func,
+    addPhoto: PropTypes.func,
+    updatePhoto: PropTypes.func,
 };
 
 export default App;
