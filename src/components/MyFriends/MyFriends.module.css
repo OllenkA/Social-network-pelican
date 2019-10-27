@@ -1,0 +1,53 @@
+.friends {
+    background-color: beige;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+.user {
+    display: inline-block;
+    padding-left: 30px;
+    text-decoration: none;
+    color: blueviolet;
+    font-size: 25px;
+    font-weight: 500; 
+}
+
+.user:visited {
+    color: rgb(205, 233, 50);
+}
+
+.user:hover {
+    transition: 0.5s;
+    font-size: 35px;
+    font-weight: 600;
+    text-shadow: 2px -2px 1px rgba(0,0,0,0.6);
+}
+
+.friend {
+    margin: 10px;
+    padding: 10px;
+    color: rgb(235, 54, 114);
+}
+
+.friend:hover {
+    border: 2px double blueviolet;
+    border-radius: 30px;
+    box-shadow: 5px -5px 2px blueviolet;
+}
+
+.ava {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    border: 2px solid rgb(205, 233, 50);
+}
+
+.ava:hover {
+    transition: 1s;
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+}

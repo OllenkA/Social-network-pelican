@@ -1,0 +1,49 @@
+.dialogs {
+  grid-area: c;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.ava {
+  width: 100%;
+  margin: 20px;
+  color: blueviolet;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.mess {
+  border: 2px dotted rgb(235, 54, 114);
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.text {
+  margin: 15px;
+  width: 90%;
+  border: 1px solid rgb(235, 54, 114);
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 15px 15px 8px rgba(0,0,0,0.6);
+  outline: none;
+  overflow: auto;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.but {
+  border: 1px solid rgb(235, 54, 114);
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 5px 5px 2px rgba(0,0,0,0.6);
+  outline: none;
+  margin-right: 10px;
+  margin-left: 10px;
+  font-size: 15px;
+}
+
+
+
+
+
+  

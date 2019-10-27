@@ -1,0 +1,39 @@
+.header {
+    grid-area: h;
+    background-color: rgb(205, 233, 50);
+    display: grid;
+    grid-template-columns: 0.5fr 10fr 1.5fr;
+    grid-template-areas: "x y z";
+}
+
+.header img {
+    grid-area: x;
+    width: 70px;
+}
+
+.headline {
+    grid-area: y;
+    font-size: 55px;
+    font-weight: 900;
+    font-style: unset;
+    color: blueviolet;
+    margin-left: 10px;
+    text-shadow: 5px -5px 5px black;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.headline:hover {
+    font-weight: 900;
+    transition: 2s;
+    text-shadow: 15px -15px 2px black;
+}
+
+.loginBlock{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+}

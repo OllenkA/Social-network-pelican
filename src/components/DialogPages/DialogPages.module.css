@@ -1,0 +1,28 @@
+.page {
+  background-color: beige;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-left: 10px;
+  padding: 10px;
+}
+  
+.dialogPage {
+  display: grid;
+  justify-content: space-between;
+    /* grid-template-rows: 1fr; */
+  grid-template-columns: 4.4fr 0.2fr 5.4fr;
+  grid-template-areas:
+  "u v c";
+}
+
+.user {
+  grid-area: u;
+}
+  
+.verticalLine {
+  grid-area: v;
+  background-color: rgb(235, 54, 114);
+  width: 3px;
+  box-shadow: 15px 15px 8px rgba(0,0,0,0.6);
+}
+  
