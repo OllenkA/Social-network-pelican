@@ -15,13 +15,13 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 
 
-const App = (props) => {
+const App = () => {
 
     return (
-        <div className='app-wrapper'>
+        <main className='app-wrapper'>
             <HeaderContainer/>
             <NavContainer/>
-            <div className='wrap'>
+            <nav className='wrap'>
                 <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
                 <Route path='/login' render={() => <Login/>}/>
                 <Route path='/dialogPages' render={() => <DialogPages/>}/>
@@ -31,8 +31,8 @@ const App = (props) => {
                 <Route path='/findUsers' render={() => <FindUsersContainer/>}/>
                 <Route path='/settings' render={() => <Settings/>}/>
                 <Route exact path='/myFriends' render={() => <MyFriendsContainer/>}/>
-            </div>
-        </div>
+            </nav>
+        </main>
     )
 };
 
