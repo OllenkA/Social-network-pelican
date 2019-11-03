@@ -1,36 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import { setCurrentPage, toggleFollowingProgress,
-    getUsersTC, deleteFollowTC, postFollowTC } from '../../redux/users-reducer';
+import {
+    setCurrentPage, toggleFollowingProgress,
+    getUsersTC, deleteFollowTC, postFollowTC
+} from '../../redux/users-reducer';
 import FindUsers from "./FindUsers";
 import Preloader from "../common/Preloader/Preloader";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 class FindUsersContainer extends React.Component {
 
     componentDidMount() {
         this.props.getUsersTC(this.props.currentPage, this.props.pageSize)
-        // usersApi.getUsers(this.props.currentPage, this.props.pageSize)
-        //     .then(data => {
-        //         this.props.toggleIsFetching(false);
-        //         this.props.setUsers(data.items);
-        //         this.props.setTotalUsersCount(data.totalCount)
-        //     });
     }
 
     onPageChanged = (pageNumber) => {
         this.props.setCurrentPage(pageNumber);
         this.props.getUsersTC(pageNumber, this.props.pageSize)
     };
-    //     this.props.setCurrentPage(pageNumber);
-    //     this.props.toggleIsFetching(true);
-    //     usersApi.getUsers(pageNumber, this.props.pageSize)
-    //         .then(data => {
-    //             this.props.toggleIsFetching(false);
-    //             this.props.setUsers(data.items);
-    //         });
-    // };
 
     render() {
 
@@ -68,5 +58,11 @@ FindUsersContainer.propTypes = {
     photo: PropTypes.string,
 };
 
-export default connect(mapStateToProps, {getUsersTC, deleteFollowTC, postFollowTC, setCurrentPage,
-        toggleFollowingProgress})(FindUsersContainer);
+export default compose(
+    withAuthRedirect,
+    connect(mapStateToProps, {getUsersTC, deleteFollowTC, postFollowTC, setCurrentPage, toggleFollowingProgress}
+    ))(FindUsersContainer)
+
+// export default withAuthRedirect(connect(mapStateToProps, {getUsersTC, deleteFollowTC, postFollowTC, setCurrentPage,
+//         toggleFollowingProgress})(FindUsersContainer))
+

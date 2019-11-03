@@ -16,12 +16,6 @@ export const usersApi = {
                 return response.data;
             });
     },
-    getUserPage(userId){
-        return instance.get(`profile/` + userId)
-            .then(response => {
-                return response.data;
-            });
-    },
     deleteFollow(userId){
         return instance.delete(`follow/` + userId)
             .then(response => {
@@ -33,7 +27,11 @@ export const usersApi = {
             .then(response => {
                 return response.data;
             });
-    }
+    },
+    getProfile(userId){
+        console.warn('Odsolete method. Please profileAPI object.');
+        return profileAPI.getProfile(userId);
+    },
 };
 
 export const authApi = {
@@ -44,4 +42,19 @@ export const authApi = {
             });
     },
 
+};
+
+export const profileAPI = {
+    getProfile(userId){
+        return instance.get(`profile/` + userId)
+            .then(response => {
+                return response.data;
+            });
+    },
+    getStatus(userId){
+        return instance.get(`profile/status/` + userId)
+    },
+    updateStatus(status){
+        return instance.put(`profile/status`, {status: status})
+    }
 };

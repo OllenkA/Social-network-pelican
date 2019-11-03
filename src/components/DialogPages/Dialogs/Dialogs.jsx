@@ -45,7 +45,7 @@ const Dialogs = (props) => {
 
 Dialogs.propTypes = {
   state: PropTypes.object,
-  messages: PropTypes.string,
+  // messages: PropTypes.string,
   id: PropTypes.number,
   addMyMessage: PropTypes.func,
   updateMyMessage: PropTypes.func,
