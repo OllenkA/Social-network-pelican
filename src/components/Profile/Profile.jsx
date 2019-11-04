@@ -9,13 +9,16 @@ const Profile = (props) => {
 
     return <main className={s.content}>
         <ProfileInfo profile={props.profile}
-                     status={props.status} updateStatus={props.updateStatus}/>
+                     status={props.status}
+                     isAuth={props.isAuth}
+                     updateStatus={props.updateStatus}
+        />
         <Posts/>
     </main>
 };
 
 Profile.propTypes = {
-    profile: PropTypes.array,
+    profile: PropTypes.object,
     status: PropTypes.string,
     updateStatusTC: PropTypes.func,
 };

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import DialogPages from './components/DialogPages/DialogPages';
-import {Route} from 'react-router-dom';
+import {Route, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import News from './components/News/News';
 import Music from './components/Music/Music';
@@ -13,37 +13,51 @@ import FindUsersContainer from './components/FindUsers/FindUsersContainer';
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
+import {compose} from "redux";
+import {connect} from "react-redux";
+import {initializeApp} from "./redux/app-reducer";
+import Preloader from "./components/common/Preloader/Preloader";
 
 
-const App = () => {
+class App extends Component {
+    componentDidMount() {
+        this.props.initializeApp()
+    }
 
-    return (
-        <main className='app-wrapper'>
-            <HeaderContainer/>
-            <NavContainer/>
-            <nav className='wrap'>
-                <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
-                <Route path='/login' render={() => <Login/>}/>
-                <Route path='/dialogPages' render={() => <DialogPages/>}/>
-                <Route path='/news' render={() => <News/>}/>
-                <Route path='/music' render={() => <Music/>}/>
-                <Route path='/myPhotos' render={() => <MyPhotosContainer/>}/>
-                <Route path='/findUsers' render={() => <FindUsersContainer/>}/>
-                <Route path='/settings' render={() => <Settings/>}/>
-                <Route exact path='/myFriends' render={() => <MyFriendsContainer/>}/>
-            </nav>
-        </main>
-    )
-};
+    render() {
+        if (!this.props.initialized) {
+            return <Preloader/>
+        }
+
+        return (
+            <main className='app-wrapper'>
+                <HeaderContainer/>
+                <NavContainer/>
+                <nav className='wrap'>
+                    <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
+                    <Route path='/login' render={() => <Login/>}/>
+                    <Route path='/dialogPages' render={() => <DialogPages/>}/>
+                    <Route path='/news' render={() => <News/>}/>
+                    <Route path='/music' render={() => <Music/>}/>
+                    <Route path='/myPhotos' render={() => <MyPhotosContainer/>}/>
+                    <Route path='/findUsers' render={() => <FindUsersContainer/>}/>
+                    <Route path='/settings' render={() => <Settings/>}/>
+                    <Route exact path='/myFriends' render={() => <MyFriendsContainer/>}/>
+                </nav>
+            </main>
+        )
+    }
+}
 
 App.propTypes = {
-    state: PropTypes.object,
-    updatePostText: PropTypes.func,
-    addPost: PropTypes.func,
-    updateMyMessage: PropTypes.func,
-    addMyMessage: PropTypes.func,
-    addPhoto: PropTypes.func,
-    updatePhoto: PropTypes.func,
+    getAuthTC: PropTypes.func,
 };
 
-export default App;
+const mapDispatchToProps = (state) => ({
+    initialized: state.app.initialized
+});
+
+export default compose(
+    withRouter,
+    connect(mapDispatchToProps, {initializeApp})
+)(App);

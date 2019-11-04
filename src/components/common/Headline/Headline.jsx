@@ -4,10 +4,11 @@ import s from './Headline.module.css';
 
 
 const Headline = (props) => {
-
     return <h1 className={s.title}>{props.title}</h1>
+};
 
-
+Headline.propTypes = {
+    title: PropTypes.string,
 };
 
 export default Headline;

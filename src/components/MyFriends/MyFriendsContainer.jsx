@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import PropTypes from 'prop-types';
 import MyFriends from './MyFriends';
 import { connect } from 'react-redux';
@@ -7,7 +7,7 @@ const mapStateToProps = (state) => {
     return {
     state: state.myFriends.friends
     }
-}
+};
 
 
 const MyFriendsContainer = connect(mapStateToProps) (MyFriends);

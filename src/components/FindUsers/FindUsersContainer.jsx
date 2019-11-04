@@ -7,7 +7,6 @@ import {
 } from '../../redux/users-reducer';
 import FindUsers from "./FindUsers";
 import Preloader from "../common/Preloader/Preloader";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 
@@ -59,7 +58,6 @@ FindUsersContainer.propTypes = {
 };
 
 export default compose(
-    withAuthRedirect,
     connect(mapStateToProps, {getUsersTC, deleteFollowTC, postFollowTC, setCurrentPage, toggleFollowingProgress}
     ))(FindUsersContainer)
 

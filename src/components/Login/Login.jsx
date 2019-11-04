@@ -3,13 +3,21 @@ import styles from './Login.module.css';
 import Headline from "../common/Headline/Headline";
 import LoginReduxForm from "./LoginForm/LoginForm";
 import {connect} from "react-redux";
+import {loginTC, logoutTC} from "../../redux/auth-reducer";
+import {Redirect} from "react-router-dom";
 
 
 
-const Login = () => {
+const Login = (props) => {
     const onSubmit = (formData) => {
-        console.log(formData)
+        debugger
+        props.loginTC(formData.email, formData.password, formData.rememberMe);
+        // console.log(formData)
     };
+
+    if(props.isAuth) {
+        return <Redirect to={'/profile'}/>
+    }
 
     return <main className={styles.content}>
     <Headline title={'LOGIN'}/>
@@ -17,6 +25,8 @@ const Login = () => {
     </main>
 };
 
-const mapDispatchToProps = () => ({});
+const mapDispatchToProps = (state) => ({
+    isAuth: state.auth.isAuth,
+});
 
-export default connect(mapDispatchToProps, {} )(Login);
+export default connect(mapDispatchToProps, {loginTC, logoutTC} )(Login);

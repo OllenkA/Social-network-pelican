@@ -14,25 +14,29 @@ class ProfileContainer extends React.Component {
 
         let userId = this.props.match.params.userId;
         if (!userId) {
-            userId = 2
+            userId = this.props.authorizedUserId;
+            if (!userId) {
+                this.props.history.push('/login')
+            }
         }
         this.props.getUserPageTC(userId);
         this.props.getUserStatusTC(userId);
     }
 
     render() {
-        return (
-            <Profile profile={this.props.profile}
-                     status={this.props.status}
-                     updateStatus={this.props.updateStatusTC}
-            />
-        )
+        return <Profile profile={this.props.profile}
+                        status={this.props.status}
+                        updateStatus={this.props.updateStatusTC}
+                        isAuth={this.props.isAuth}
+        />
     }
 }
 
 let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
+    authorizedUserId: state.auth.userId,
+    isAuth: state.auth.isAuth
 });
 
 export default compose(
@@ -42,7 +46,7 @@ export default compose(
 )(ProfileContainer);
 
 ProfileContainer.propTypes = {
-    profile: PropTypes.array,
+    profile: PropTypes.object,
     status: PropTypes.string,
     getUserPageTC: PropTypes.func,
     getUserStatusTC: PropTypes.func,

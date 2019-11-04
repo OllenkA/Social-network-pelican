@@ -1,21 +1,32 @@
 import React from 'react';
-// import styles from '../Login.module.css';
+import styles from '../../common/FormsControl/FormControls.module.css';
 import {Field, reduxForm} from "redux-form";
-
+import {Input} from "../../common/FormsControl/FormsControl";
+import {required} from "../../../utils/validators/validators";
 
 
 const LoginForm = (props) => {
 
     return <form onSubmit={props.handleSubmit}>
         <div>
-            <Field name={'login'} placeholder={'Login'} component={'input'}/>
+            <Field name={'email'} placeholder={'Email'}
+                   component={Input}
+                   validate={required}/>
         </div>
         <div>
-            <Field name={'password'} placeholder={'Password'} component={'input'}/>
+            <Field name={'password'} placeholder={'Password'} type={'password'}
+                   component={Input}
+                   validate={required}/>
         </div>
         <div>
-            <Field name={'rememberMe'} type={'checkbox'} component={'input'}/> remember me
+            <Field component={Input} name={'rememberMe'} type={'checkbox'}/> remember me
         </div>
+        {props.error &&
+        <div className={styles.formSummaryError}>
+            {props.error}
+        </div>
+        }
+
         <div>
             <button>
                 Login
@@ -24,6 +35,6 @@ const LoginForm = (props) => {
     </form>
 };
 
-const LoginReduxForm = reduxForm( {form: 'login'} )(LoginForm);
+const LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
 
 export default LoginReduxForm;
