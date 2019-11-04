@@ -1,59 +1,60 @@
 import React from 'react';
 import s from './Post.module.css';
 import PropTypes from 'prop-types';
+import {AddPostFormRedux} from "./AddPostFormRedux";
+
 
 const Post = (props) => {
 
-    let addPost = () => {
-        props.addPost(); 
-    }
-
-    let changeTextPost = (e) => {
-        let text = e.target.value;
-        props.changeTextPost(text);
-    }
-
-    let deletePost = () => {
-        props.changeTextPost('');
-    }
+    let addNewPost = (value) => {
+        props.addPostActionCreator(value.postMessage);
+    };
 
     let like = props.posts.map((el, i) => {
-        
         return (
-            <div key={i}>
-                <div className={s.post}>
+            <article key={i}>
+                <figure className={s.post}>
                     <img className={s.photo} src='https://yt3.ggpht.com/a/AGF-l7_k9w9W2vE7M5xuxPSEnDbzDB1nJHZNl3lqpA=s900-mo-c-c0xffffffff-rj-k-no' alt="myPhoto" />
                     {el.post}
-                </div>
+                </figure>
                 <button className={s.but}>
                     LIKE
                 </button>
                 <span className={s.like}>
                     {el.likesCount}
                 </span>
-            </div>
+            </article>
         )
     });
 
-    return <div>
-        <textarea onChange={changeTextPost}
-            className={s.enter}
-            placeholder='Start writting about your life... Please!'
-            value={props.postMessage}>
-        </textarea>
-        <button className={s.button} onClick={addPost}>Publish</button>
-        <button className={s.button} onClick={deletePost}>Clear</button>
-        <div>
+    return <article>
+        <AddPostFormRedux onSubmit={addNewPost}/>
+        <section>
           {like}
-        </div>
-    </div>
-}
+        </section>
+    </article>
+};
+
+// const AddPostForm = (props) => {
+//     return <form onSubmit={props.handleSubmit}>
+//         <Field className={s.enter} component='textarea' name='postMessage'
+//                placeholder='Start writting about your life... Please!' />
+//         <div>
+//             <button className={s.button}>
+//                 Publish
+//             </button>
+//             <button className={s.button}>
+//                 Clear
+//             </button>
+//         </div>
+//     </form>
+// };
+//
+// const AddPostFormRedux = reduxForm({form: 'profileAddPostForm'})(AddPostForm);
 
 Post.propTypes = {
-    state: PropTypes.object,
-    postMessage: PropTypes.string,
-    addPost: PropTypes.func,
-    updatePostText: PropTypes.func,
+    posts: PropTypes.array,
+    addPostActionCreator: PropTypes.func,
 };
 
 export default Post;

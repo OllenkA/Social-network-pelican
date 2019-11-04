@@ -1,54 +1,37 @@
 import React from 'react';
 import s from './Dialogs.module.css';
 import PropTypes from 'prop-types';
+import AddMessageFormRedux from "./AddMessageFormRedux";
 
 
 const Dialogs = (props) => {
-  
-  let addMyMessage = () => {
-    props.addMyMessage();
-  };
 
-  let changeMyMessage = (e) => {
-    let text = e.target.value;
-    props.changeMyMessage(text);
-  };
-  
-  let deleteMyMessage = () => {
-    props.deleteMyMessage('');
-  };
+    // let addNewMessage = (value) => {
+    //     props.addMyMessageActionCreator(value.myMessage);
+    // };
 
-  let messages = props.messages.map((message, i) => {
-    return (
-      <div key={i} className={s.ava}>SMILE
-      <span className={s.mess}>
+    let messages = props.messages.map((message, i) => {
+        return (
+            <div key={i} className={s.ava}>SMILE
+                <span className={s.mess}>
           {message.message}
         </span>
-      </div>
-    )
-  });
+            </div>
+        )
+    });
 
-  return <main className={s.dialogs}>
-    {messages}
-    <div>
-      <textarea className={s.text}
-        onChange={changeMyMessage}
-        placeholder='Write message...'
-        value={props.myMessage}/>
-      <div>
-        <button className={s.but} onClick={addMyMessage}>Send</button>
-        <button className={s.but} onClick={deleteMyMessage}>Clear</button>
-      </div>
-    </div>
-  </main>
+
+    return <main className={s.dialogs}>
+        {messages}
+        <AddMessageFormRedux onSubmit={props.addNewMessage}/>
+    </main>
 };
 
 Dialogs.propTypes = {
-  state: PropTypes.object,
-  // messages: PropTypes.string,
-  id: PropTypes.number,
-  addMyMessage: PropTypes.func,
-  updateMyMessage: PropTypes.func,
+    messages: PropTypes.array,
+    message: PropTypes.string,
+    id: PropTypes.number,
+    addMyMessageActionCreator: PropTypes.func,
 };
 
 export default Dialogs;

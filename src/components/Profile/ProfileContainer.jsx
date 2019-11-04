@@ -5,6 +5,7 @@ import {withRouter} from "react-router-dom";
 import {getUserPageTC, getUserStatusTC, updateStatusTC} from "../../redux/profile-reducer";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
+import PropTypes from "prop-types";
 
 
 class ProfileContainer extends React.Component {
@@ -21,8 +22,10 @@ class ProfileContainer extends React.Component {
 
     render() {
         return (
-            <Profile {...this.props} profile={this.props.profile}
-            status={this.props.status}  updateStatus={this.props.updateStatusTC}/>
+            <Profile profile={this.props.profile}
+                     status={this.props.status}
+                     updateStatus={this.props.updateStatusTC}
+            />
         )
     }
 }
@@ -38,6 +41,13 @@ export default compose(
     withAuthRedirect
 )(ProfileContainer);
 
+ProfileContainer.propTypes = {
+    profile: PropTypes.array,
+    status: PropTypes.string,
+    getUserPageTC: PropTypes.func,
+    getUserStatusTC: PropTypes.func,
+    updateStatusTC: PropTypes.func,
+};
 // let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
 
 

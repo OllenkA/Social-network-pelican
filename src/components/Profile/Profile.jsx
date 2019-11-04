@@ -15,9 +15,9 @@ const Profile = (props) => {
 };
 
 Profile.propTypes = {
-    state: PropTypes.object,
-    addPost: PropTypes.func,
-    updatePostText: PropTypes.func,
+    profile: PropTypes.array,
+    status: PropTypes.string,
+    updateStatusTC: PropTypes.func,
 };
 
 export default Profile;
