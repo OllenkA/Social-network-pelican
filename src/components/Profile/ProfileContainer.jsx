@@ -9,9 +9,7 @@ import PropTypes from "prop-types";
 
 
 class ProfileContainer extends React.Component {
-
     componentDidMount() {
-
         let userId = this.props.match.params.userId;
         if (!userId) {
             userId = this.props.authorizedUserId;
@@ -53,8 +51,5 @@ ProfileContainer.propTypes = {
     updateStatusTC: PropTypes.func,
 };
 // let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
-
-
 // let withUrlDataContainerComponent = withRouter(AuthRedirectComponent);
-
 // export default connect(mapStateToProps, {getUserPageTC})(withUrlDataContainerComponent);

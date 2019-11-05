@@ -17,43 +17,6 @@ let initialState = {
     followingInProgress: []
 };
 
-export const getUsersTC = (currentPage, pageSize) => (dispatch) => {
-
-    dispatch(toggleIsFetching(true));
-
-    usersApi.getUsers(currentPage, pageSize)
-        .then(data => {
-            dispatch(toggleIsFetching(false));
-            dispatch(setUsers(data.items));
-            dispatch(setTotalUsersCount(data.totalCount))
-        });
-};
-
-
-export const deleteFollowTC = (userId ) => (dispatch) => {
-    dispatch(toggleFollowingProgress(true, userId));
-    usersApi.deleteFollow(userId)
-        .then(data => {
-            if (data.resultCode === 0) {
-                dispatch(unfollow(userId))
-            }
-            dispatch(toggleFollowingProgress(false, userId));
-        });
-};
-
-export const postFollowTC = (userId) => (dispatch) => {
-    dispatch(toggleFollowingProgress(true, userId));
-    usersApi.postFollow(userId)
-        .then(data => {
-            if (data.resultCode === 0) {
-                dispatch(follow(userId))
-            }
-            dispatch(toggleFollowingProgress(false, userId));
-        });
-};
-
-
-
 const usersReducer = (state = initialState, action) => {
 
     switch (action.type) {
@@ -97,6 +60,43 @@ const usersReducer = (state = initialState, action) => {
             return state;
     }
 };
+
+export const getUsersTC = (currentPage, pageSize) => (dispatch) => {
+
+    dispatch(toggleIsFetching(true));
+    dispatch(setCurrentPage(currentPage));
+
+    usersApi.getUsers(currentPage, pageSize)
+        .then(data => {
+            dispatch(toggleIsFetching(false));
+            dispatch(setUsers(data.items));
+            dispatch(setTotalUsersCount(data.totalCount))
+        });
+};
+
+
+export const deleteFollowTC = (userId ) => (dispatch) => {
+    dispatch(toggleFollowingProgress(true, userId));
+    usersApi.deleteFollow(userId)
+        .then(data => {
+            if (data.resultCode === 0) {
+                dispatch(unfollow(userId))
+            }
+            dispatch(toggleFollowingProgress(false, userId));
+        });
+};
+
+export const postFollowTC = (userId) => (dispatch) => {
+    dispatch(toggleFollowingProgress(true, userId));
+    usersApi.postFollow(userId)
+        .then(data => {
+            if (data.resultCode === 0) {
+                dispatch(follow(userId))
+            }
+            dispatch(toggleFollowingProgress(false, userId));
+        });
+};
+
 
 export const follow = (userId) => ({ type: FOLLOW, userId });
 export const unfollow = (userId) => ({ type: UNFOLLOW, userId });
