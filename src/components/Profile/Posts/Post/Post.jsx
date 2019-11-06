@@ -4,11 +4,16 @@ import PropTypes from 'prop-types';
 import {AddPostFormRedux} from "./AddPostFormRedux";
 
 
-const Post = (props) => {
+const Post = props => {
 
     let addNewPost = (value) => {
         props.addPostActionCreator(value.postMessage);
     };
+
+    // let deletePost = (postId) => {
+    //     // alert(postId)
+    //     props.deletePostTC(postId);
+    // };
 
     let like = props.posts.map((el, i) => {
         return (
@@ -16,6 +21,9 @@ const Post = (props) => {
                 <figure className={s.post}>
                     <img className={s.photo} src='https://yt3.ggpht.com/a/AGF-l7_k9w9W2vE7M5xuxPSEnDbzDB1nJHZNl3lqpA=s900-mo-c-c0xffffffff-rj-k-no' alt="myPhoto" />
                     {el.post}
+                    <button
+                        // onClick={() => deletePost(el.id)}
+                    >Delete post</button>
                 </figure>
                 <button className={s.but}>
                     LIKE

@@ -1,5 +1,5 @@
-const ADD_PHOTO = 'ADD-PHOTO';
-const UPDATE_PHOTO = 'UPDATE-PHOTO';
+const ADD_PHOTO = 'photo/ADD-PHOTO';
+const UPDATE_PHOTO = 'photo/UPDATE-PHOTO';
 
 let initialState = {
     photos: [
@@ -32,11 +32,10 @@ const photoReducer = (state = initialState, action) => {
         default:
             return state;
     }
-}
+};
 
-export const addPhotoActionCreator = () => ({ type: ADD_PHOTO })
+export const addPhotoActionCreator = () => ({ type: ADD_PHOTO });
 
-export const updatePhotoActionCreator = (photo) =>
-    ({ type: UPDATE_PHOTO, url: photo })
+export const updatePhotoActionCreator = (photo) => ({ type: UPDATE_PHOTO, url: photo });
 
 export default photoReducer;

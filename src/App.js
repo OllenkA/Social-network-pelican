@@ -51,6 +51,7 @@ class App extends Component {
 
 App.propTypes = {
     getAuthTC: PropTypes.func,
+    initialized: PropTypes.bool,
 };
 
 const mapDispatchToProps = (state) => ({

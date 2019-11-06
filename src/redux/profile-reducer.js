@@ -1,8 +1,9 @@
-import {profileAPI, usersApi} from "../api/api";
+import {profileAPI, usersAPI} from "../api/api";
 
-const ADD_POST = 'ADD-POST';
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const SET_STATUS = 'SET_STATUS';
+const ADD_POST = 'profile/ADD-POST';
+const DELETE_POST = 'profile/DELETE_POST';
+const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
+const SET_STATUS = 'profile/SET_STATUS';
 
 
 let initialState = {
@@ -10,7 +11,8 @@ let initialState = {
         {id: 1, post: 'I fly in Turkey!!! I will swimming in the sea soon!', likesCount: 343},
         {id: 2, post: "My favorite food today - it's  the fish", likesCount: 13},
         {id: 3, post: 123432, likesCount: 3},
-        {id: 4, post: 'В приложениях с множеством компонентов очень важно освобождать используемые' +
+        {
+            id: 4, post: 'В приложениях с множеством компонентов очень важно освобождать используемые' +
                 ' системные ресурсы когда компоненты удаляются. Первоначальный рендеринг компонента в ' +
                 'DOM называется «монтирование» (mounting). Нам нужно устанавливать таймер всякий раз, ' +
                 'когда это происходит. Каждый раз когда DOM-узел, созданный компонентом, удаляется, ' +
@@ -23,28 +25,27 @@ let initialState = {
     status: '',
 };
 
-export const getUserPageTC = (userId) => (dispatch) => {
+export const getUserPageTC = (userId) => async (dispatch) => {
+    let data = await usersAPI.getProfile(userId);
+    dispatch(setUserProfile(data));
 
-    usersApi.getProfile(userId)
-        .then(data => {
-            dispatch(setUserProfile(data));
-        });
 };
 
-export const getUserStatusTC = (userId) => (dispatch) => {
-    profileAPI.getStatus(userId)
-        .then(response => {
-            dispatch(setStatus(response.data))
-        })
+export const getUserStatusTC = (userId) => async (dispatch) => {
+
+    let response = await profileAPI.getStatus(userId);
+    dispatch(setStatus(response.data))
 };
 
-export const updateStatusTC = (status) => (dispatch) => {
-    profileAPI.updateStatus(status)
-        .then(response => {
-            if(response.data.resultCode === 0) {
-                dispatch( setStatus(status) )
-            }
-        })
+export const updateStatusTC = (status) => async (dispatch) => {
+    let response = await profileAPI.updateStatus(status);
+    if (response.data.resultCode === 0) {
+        dispatch(setStatus(status))
+    }
+};
+
+export const deletePostTC = (postId) => {
+     deletePost(postId)
 };
 
 
@@ -60,6 +61,13 @@ const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 posts: [...state.posts, newPost],
+            }
+        }
+        case DELETE_POST: {
+            let postsArray = state.posts.filter((post) => post.id !== action.postId);
+            return {
+                ...state,
+                posts: [...state, postsArray]
             }
         }
         case SET_USER_PROFILE: {
@@ -85,6 +93,7 @@ export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 
 export const setStatus = (status) => ({type: SET_STATUS, status});
 
+export const deletePost = (postId) => ({type: DELETE_POST, postId});
 
 
 export default profileReducer;

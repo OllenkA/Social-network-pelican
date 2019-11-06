@@ -2,7 +2,8 @@ import React from 'react';
 import s from "../ProfileInfo/ProfileInfo.module.css";
 import Preloader from "../../common/Preloader/Preloader";
 import avaUser from '../../../asseces/images/ava.png'
-import ProfileStatus from "./ProfileStatus";
+// import ProfileStatus from "./ProfileStatus";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 
 const ProfileInfo = (props) => {
@@ -10,7 +11,6 @@ const ProfileInfo = (props) => {
     if (!props.profile) {
         return <Preloader/>
     }
-
     return <article className={s.container}>
         {/*<figure>*/}
         {/*    <img className={s.bigPhoto}*/}
@@ -38,11 +38,11 @@ const ProfileInfo = (props) => {
                         : null}
                 </h5>
             </aside>
-            <ProfileStatus status={props.status}
+            <ProfileStatusWithHooks status={props.status}
                            updateStatus={props.updateStatus}/>
-
         </section>
     </article>
 };
+
 
 export default ProfileInfo;

@@ -4,7 +4,9 @@ import s from "./Post.module.css";
 import {maxLengthCreator, required} from "../../../../utils/validators/validators";
 import {Textarea} from "../../../common/FormsControl/FormsControl";
 
+
 const maxLength10  = maxLengthCreator(10);
+
 
 const AddPostForm = (props) => {
     return <form onSubmit={props.handleSubmit}>
@@ -21,5 +23,6 @@ const AddPostForm = (props) => {
         </div>
     </form>
 };
+
 
 export const AddPostFormRedux = reduxForm({form: 'profileAddPostForm'})(AddPostForm);

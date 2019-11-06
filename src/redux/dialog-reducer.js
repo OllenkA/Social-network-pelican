@@ -1,4 +1,4 @@
-const ADD_MY_MESSAGE = 'ADD-MY-MESSAGE';
+const ADD_MY_MESSAGE = 'dialog/ADD-MY-MESSAGE';
 
 let initialState = {
         messages: [
