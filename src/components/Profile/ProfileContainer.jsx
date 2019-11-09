@@ -50,6 +50,3 @@ ProfileContainer.propTypes = {
     getUserStatusTC: PropTypes.func,
     updateStatusTC: PropTypes.func,
 };
-// let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
-// let withUrlDataContainerComponent = withRouter(AuthRedirectComponent);
-// export default connect(mapStateToProps, {getUserPageTC})(withUrlDataContainerComponent);

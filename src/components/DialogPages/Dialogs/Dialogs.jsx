@@ -3,27 +3,20 @@ import s from './Dialogs.module.css';
 import PropTypes from 'prop-types';
 import AddMessageFormRedux from "./AddMessageFormRedux";
 
-
-const Dialogs = (props) => {
-
-    // let addNewMessage = (value) => {
-    //     props.addMyMessageActionCreator(value.myMessage);
-    // };
-
-    let messages = props.messages.map((message, i) => {
+const Dialogs = ({messages, addNewMessage}) => {
+    let allMessages = messages.map((message, i) => {
         return (
             <div key={i} className={s.ava}>SMILE
                 <span className={s.mess}>
-          {message.message}
-        </span>
+                    {message.message}
+                </span>
             </div>
         )
     });
 
-
     return <main className={s.dialogs}>
-        {messages}
-        <AddMessageFormRedux onSubmit={props.addNewMessage}/>
+        {allMessages}
+        <AddMessageFormRedux onSubmit={addNewMessage}/>
     </main>
 };
 

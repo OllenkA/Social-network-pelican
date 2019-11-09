@@ -11,7 +11,7 @@ const DialogsContainer = (props) => {
     let addNewMessage = (value) => {
         props.addMyMessageActionCreator(value.myMessage);
     };
-    return <Dialogs {...props} addNewMessage={addNewMessage}/>
+    return <Dialogs messages={props.messages} addNewMessage={addNewMessage}/>
 };
 
 const mapStateToProps = (state) => ({messages: state.dialogPage.messages});

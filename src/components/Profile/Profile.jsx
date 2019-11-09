@@ -5,14 +5,11 @@ import PropTypes from 'prop-types';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 
-const Profile = (props) => {
+const Profile = ({profile, status, isAuth, updateStatus}) => {
 
     return <main className={s.content}>
-        <ProfileInfo profile={props.profile}
-                     status={props.status}
-                     isAuth={props.isAuth}
-                     updateStatus={props.updateStatus}
-        />
+        <ProfileInfo profile={profile} status={status}
+                     isAuth={isAuth} updateStatus={updateStatus}/>
         <Posts/>
     </main>
 };

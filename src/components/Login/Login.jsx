@@ -10,7 +10,6 @@ import {Redirect} from "react-router-dom";
 
 const Login = (props) => {
     const onSubmit = (formData) => {
-        debugger
         props.loginTC(formData.email, formData.password, formData.rememberMe);
         // console.log(formData)
     };
